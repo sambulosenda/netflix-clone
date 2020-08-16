@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { GlobalStyles } from "./global-styles";
+import App from "./App";
+import { FirebaseContext } from "./context/firebase";
+
+const config = {
+  apiKey: "AIzaSyAhiPpFAgZPEMmf1ff80seAY33KBJNTk3Q",
+  authDomain: "netflixmovie-b307e.firebaseapp.com",
+  databaseURL: "https://netflixmovie-b307e.firebaseio.com",
+  projectId: "netflixmovie-b307e",
+  storageBucket: "netflixmovie-b307e.appspot.com",
+  messagingSenderId: "868206171862",
+  appId: "1:868206171862:web:be8546c77e3b0566f19b77"
+};
+
+const firebase = window.firebase.initializeApp(config);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <FirebaseContext.Provider value={{ firebase: window.firebase }}>
+    <GlobalStyles />
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </FirebaseContext.Provider>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
